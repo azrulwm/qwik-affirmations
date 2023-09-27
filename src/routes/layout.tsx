@@ -4,6 +4,7 @@ import {
   Slot,
   useContextProvider,
   useStore,
+  useVisibleTask$,
 } from "@builder.io/qwik";
 import Modal from "~/components/router-head/modal";
 
@@ -21,6 +22,14 @@ export default component$(() => {
   });
 
   useContextProvider(MyContext, state);
+
+  useVisibleTask$(() => {
+    if (localStorage.getItem("qwik-affirmations")) {
+      state.affirmations = JSON.parse(
+        localStorage.getItem("qwik-affirmations")
+      ).affirmations;
+    }
+  });
 
   return (
     <>

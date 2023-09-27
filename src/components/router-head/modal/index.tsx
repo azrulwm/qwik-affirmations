@@ -37,6 +37,12 @@ export default component$(() => {
             ...data.affirmations,
             [state.affirmation, author.value],
           ];
+
+          localStorage.setItem(
+            "qwik-affirmations",
+            JSON.stringify({ affirmations: data.affirmations })
+          );
+
           state.affirmation = "";
           author.value = "";
 
