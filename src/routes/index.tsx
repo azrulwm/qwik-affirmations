@@ -27,18 +27,23 @@ export default component$(() => {
     <>
       {data.affirmations.length > 0 ? (
         <>
-          <h1> {data.affirmations[displayIndex.value][0]}</h1>
-          <p>
-            <i>{data.affirmations[displayIndex.value][1]}</i>
+          <h1 class="text-3xl font-semibold text-center">
+            "{data.affirmations[displayIndex.value][0]}"
+          </h1>
+          <p class="text-slate-300 text-sm">
+            <i>-{data.affirmations[displayIndex.value][1]}</i>
           </p>
         </>
       ) : (
         <>
-          <p>Welcome to Affirmations!</p>
+          <p class="text-4xl font-semibold text-center">
+            Welcome to Affirmations!
+          </p>
           <p
             onClick$={() => {
               data.openModal = true;
             }}
+            class="mt-5 px-4 py-2 rounder border-white border-solid bg-white text-slate-900 hover:bg-slate-300 cursor-pointer duration-300"
           >
             Add an affirmation
           </p>

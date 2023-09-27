@@ -17,7 +17,7 @@ interface AffirmationState {
 export default component$(() => {
   const state = useStore({
     affirmations: [],
-    openModal: true,
+    openModal: false,
   });
 
   useContextProvider(MyContext, state);
@@ -33,7 +33,7 @@ export default component$(() => {
           class="fa-solid fa-plus cursor-pointer"
         ></i>
       </header>
-      <main class="flex-1 flex flex-col max-w-[1200px] mx-auto w-full">
+      <main class="flex-1 flex flex-col max-w-[1200px] mx-auto w-full justify-center items-center gap-2">
         <Slot />
       </main>
       <footer>footer</footer>
