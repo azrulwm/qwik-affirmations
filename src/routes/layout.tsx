@@ -17,7 +17,7 @@ interface AffirmationState {
 export default component$(() => {
   const state = useStore({
     affirmations: [],
-    openModal: false,
+    openModal: true,
   });
 
   useContextProvider(MyContext, state);
