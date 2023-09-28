@@ -1,0 +1,1 @@
+import{H as t,m as e,_ as o}from"./q-72f37b4b.js";const i=t(e(()=>o(()=>import("./q-b1fc0ff7.js"),["build/q-b1fc0ff7.js","build/q-72f37b4b.js","build/q-fe2dabee.js"]),"s_xYL1qOwPyDI")),s={title:"Affirmations",meta:[{name:"description",content:"This is a feel good app  that reminds you of all the positive things people have to say about you"}]};export{i as default,s as head};
