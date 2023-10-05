@@ -6,7 +6,7 @@ import {
   useStore,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import Modal from "~/components/router-head/modal";
+import Modal from "~/components/modal";
 
 export const MyContext = createContextId<AffirmationState>("qwik-affirmations");
 
