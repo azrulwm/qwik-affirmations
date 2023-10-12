@@ -10,6 +10,12 @@ export default component$(() => {
 
   return (
     <div class="fixed top-0 left-0 w-screen h-screen bg-slate-900 p-4 flex flex-col gap-2">
+      <div class=" flex justify-end">
+        <i
+          class="fa-solid fa-xmark cursor-pointer"
+          onClick$={() => (data.openModal = false)}
+        ></i>
+      </div>
       <p class="text-2xl font-semibold text-center">Add an Affirmation</p>
       <input
         type="text"
@@ -19,7 +25,6 @@ export default component$(() => {
         }}
         class="bg-transparent outline-none focus:outline-none text-sm sm:text-base p-2 rounded border border-sky-800 focus:border-sky-400 duration-200"
       />
-
       <input
         type="text"
         placeholder="Author"
