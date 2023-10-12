@@ -18,7 +18,7 @@ interface AffirmationState {
 export default component$(() => {
   const state = useStore({
     affirmations: [],
-    openModal: true,
+    openModal: false,
   });
 
   useContextProvider(MyContext, state);
@@ -45,7 +45,9 @@ export default component$(() => {
       <main class="flex-1 flex flex-col max-w-[1200px] mx-auto w-full justify-center items-center gap-2">
         <Slot />
       </main>
-      <footer>footer</footer>
+      <footer class="text-center text-sm">
+        © 2023 Qwik-Affirmations. All rights reserved.
+      </footer>
     </>
   );
 });
