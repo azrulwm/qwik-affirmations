@@ -6,6 +6,7 @@ import {
   useStore,
   useVisibleTask$,
 } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 import Modal from "~/components/modal";
 
 export const MyContext = createContextId<AffirmationState>("qwik-affirmations");
@@ -35,12 +36,19 @@ export default component$(() => {
     <>
       {state.openModal && <Modal />}
       <header>
-        <i
-          onClick$={() => {
-            state.openModal = !state.openModal;
-          }}
-          class="fa-solid fa-plus cursor-pointer"
-        ></i>
+        <div class="flex justify-between">
+          <i
+            onClick$={() => {
+              state.openModal = !state.openModal;
+            }}
+            class="fa-solid fa-plus cursor-pointer"
+          ></i>
+          <div class="flex gap-10">
+            <Link href="/">Home</Link>
+            <Link href="/blogs">Blogs</Link>
+            <Link href="/about-affirmations">About</Link>
+          </div>
+        </div>
       </header>
       <main class="flex-1 flex flex-col max-w-[1200px] mx-auto w-full justify-center items-center gap-2">
         <Slot />
