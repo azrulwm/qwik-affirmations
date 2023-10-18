@@ -12,7 +12,7 @@ import Modal from "~/components/modal";
 export const MyContext = createContextId<AffirmationState>("qwik-affirmations");
 
 interface AffirmationState {
-  affirmations: string[];
+  affirmations: Array<[string, string]>;
   openModal: boolean;
 }
 
@@ -25,10 +25,9 @@ export default component$(() => {
   useContextProvider(MyContext, state);
 
   useVisibleTask$(() => {
-    if (localStorage.getItem("qwik-affirmations")) {
-      state.affirmations = JSON.parse(
-        localStorage.getItem("qwik-affirmations")
-      ).affirmations;
+    const storedData = localStorage.getItem("qwik-affirmations");
+    if (storedData) {
+      state.affirmations = JSON.parse(storedData).affirmations;
     }
   });
 

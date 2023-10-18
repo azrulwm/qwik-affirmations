@@ -21,7 +21,9 @@ export default component$(() => {
         type="text"
         placeholder="Enter affirmation"
         onInput$={(e) => {
-          state.affirmation = e.target.value;
+          if (e.target instanceof HTMLInputElement) {
+            state.affirmation = e.target.value;
+          }
         }}
         class="bg-transparent outline-none focus:outline-none text-sm sm:text-base p-2 rounded border border-sky-800 focus:border-sky-400 duration-200"
       />
