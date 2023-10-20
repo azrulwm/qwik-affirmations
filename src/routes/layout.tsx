@@ -45,6 +45,7 @@ export default component$(() => {
           <div class="flex gap-10">
             <Link href="/">Home</Link>
             <Link href="/blogs">Blogs</Link>
+            <Link href="/details">Details</Link>
             <Link href="/about-affirmations">About</Link>
           </div>
         </div>

@@ -9,7 +9,7 @@ export default component$(() => {
   const data = useContext(MyContext);
 
   return (
-    <div class="fixed top-0 left-0 w-screen h-screen bg-slate-900 p-4 flex flex-col gap-2">
+    <div class="fixed top-0 left-0 w-screen h-screen bg-slate-900 p-4 flex flex-col gap-2 z-10">
       <div class=" flex justify-end">
         <i
           class="fa-solid fa-xmark cursor-pointer"

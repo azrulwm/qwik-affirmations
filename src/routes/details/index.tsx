@@ -1,6 +1,5 @@
-import { component$, useContext } from "@builder.io/qwik";
-import { MyContext } from "../layout";
-import { Link } from "@builder.io/qwik-city";
+import { component$ } from "@builder.io/qwik";
+
 import {
   RenderContent,
   getBuilderSearchParams,
@@ -33,24 +32,11 @@ export const useBuilderContent = routeLoader$(async ({ url, error }) => {
 });
 
 export default component$(() => {
-  const blogsData = useContext(MyContext).affirmations;
   const content = useBuilderContent();
 
   return (
     <>
-      <p>Blogs</p>
-      {blogsData.map((blog, index) => {
-        const affirmation = blog[0];
-        const author = blog[1];
-        return (
-          <Link href={author} key={index}>
-            <div class="bg-red-300 cursor-pointer">
-              Affirmation : {affirmation}, author: {author}
-              <br />
-            </div>
-          </Link>
-        );
-      })}
+      <p>This is details page</p>
 
       <RenderContent
         model={BUILDER_MODEL}
