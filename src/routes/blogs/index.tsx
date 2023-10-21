@@ -6,7 +6,6 @@ import {
   getBuilderSearchParams,
   getContent,
 } from "@builder.io/sdk-qwik";
-
 import { routeLoader$ } from "@builder.io/qwik-city";
 
 export const BUILDER_MODEL = "announcement-bar";
