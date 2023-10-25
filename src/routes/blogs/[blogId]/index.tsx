@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import {
   RenderContent,
@@ -30,18 +29,23 @@ export const useBuilderContent = routeLoader$(async ({ url, error }) => {
 });
 
 export default component$(() => {
-  const params = useLocation().params;
-  const content = useBuilderContent();
+  const content = useBuilderContent().value;
+  // console.log(content);
 
   return (
     <>
-      <div class="bg-red-500 h-[500px]">
-        This is Blog details for {params.blogId}
+      <div class="h-[500px] flex flex-col justify-center items-center">
+        <h1 class="text-3xl font-semibold text-center">
+          "{content?.data.affirmation}"
+        </h1>
+        <p class="text-slate-300 text-sm">
+          <i>-{content?.data.title}</i>
+        </p>
       </div>
 
       <RenderContent
         model={BUILDER_MODEL}
-        content={content.value}
+        content={content}
         apiKey={import.meta.env.PUBLIC_BUILDER_API_KEY}
       />
     </>

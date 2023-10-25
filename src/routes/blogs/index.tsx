@@ -1,14 +1,32 @@
-import { component$, useContext } from "@builder.io/qwik";
-import { MyContext } from "../layout";
+import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
 import {
   RenderContent,
+  getAllContent,
   getBuilderSearchParams,
   getContent,
 } from "@builder.io/sdk-qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 
 export const BUILDER_MODEL = "announcement-bar";
+
+export const useBlogsContent = routeLoader$(async ({ url, error }) => {
+  const isPreviewing = url.searchParams.has("builder.preview");
+
+  const builderContent = await getAllContent({
+    model: "blogs-details",
+    apiKey: import.meta.env.PUBLIC_BUILDER_API_KEY,
+    options: getBuilderSearchParams(url.searchParams),
+  });
+
+  // If there's no content, throw a 404.
+  // You can use your own 404 component here
+  if (!builderContent && !isPreviewing) {
+    throw error(404, "Page not found");
+  }
+  // return content fetched from Builder, which is JSON
+  return builderContent;
+});
 
 export const useBuilderContent = routeLoader$(async ({ url, error }) => {
   const isPreviewing = url.searchParams.has("builder.preview");
@@ -32,18 +50,20 @@ export const useBuilderContent = routeLoader$(async ({ url, error }) => {
 });
 
 export default component$(() => {
-  const blogsData = useContext(MyContext).affirmations;
   const content = useBuilderContent();
+  const blogsContent = useBlogsContent().value;
 
   return (
-    <>
+    <div class="max-w-xl ">
       <p>Blogs</p>
-      {blogsData.map((blog, index) => {
-        const affirmation = blog[0];
-        const author = blog[1];
+      {blogsContent.results.map((blog, index) => {
+        const affirmation = blog.data.affirmation;
+        const author = blog.data.title;
+        const url = blog.data.url;
+
         return (
-          <Link href={author} key={index}>
-            <div class="bg-red-300 cursor-pointer">
+          <Link href={url} key={index}>
+            <div class="cursor-pointer mt-8">
               Affirmation : {affirmation}, author: {author}
               <br />
             </div>
@@ -56,6 +76,6 @@ export default component$(() => {
         content={content.value}
         apiKey={import.meta.env.PUBLIC_BUILDER_API_KEY}
       />
-    </>
+    </div>
   );
 });
