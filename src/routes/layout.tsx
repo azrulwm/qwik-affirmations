@@ -63,11 +63,15 @@ export default component$(() => {
             <Link href="/about-affirmations">About</Link>
           </div> */}
           <nav class="flex gap-10">
-            {navContent.value.results.map((link, index) => (
-              <a key={index} href={link.data.url}>
-                {link.data.label}
-              </a>
-            ))}
+            {navContent.value === null
+              ? null
+              : "results" in navContent.value
+              ? navContent.value.results.map((link: any, index: number) => (
+                  <a key={index} href={link.data.url}>
+                    {link.data.label}
+                  </a>
+                ))
+              : null}
           </nav>
         </div>
       </header>
