@@ -6,8 +6,11 @@ import {
   useStore,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { routeLoader$ } from "@builder.io/qwik-city";
+import { getAllContent } from "@builder.io/sdk-qwik";
 import Modal from "~/components/modal";
+
+export const BUILDER_MODEL = "navigation-link";
 
 export const MyContext = createContextId<AffirmationState>("qwik-affirmations");
 
@@ -16,11 +19,22 @@ interface AffirmationState {
   openModal: boolean;
 }
 
+export const useBuilderContent = routeLoader$(async () => {
+  const builderContent = await getAllContent({
+    model: BUILDER_MODEL,
+    apiKey: import.meta.env.PUBLIC_BUILDER_API_KEY,
+  });
+
+  return builderContent;
+});
+
 export default component$(() => {
   const state = useStore({
     affirmations: [],
     openModal: false,
   });
+
+  const navContent = useBuilderContent();
 
   useContextProvider(MyContext, state);
 
@@ -42,12 +56,19 @@ export default component$(() => {
             }}
             class="fa-solid fa-plus cursor-pointer"
           ></i>
-          <div class="flex gap-10">
+          {/* <div class="flex gap-10">
             <Link href="/">Home</Link>
             <Link href="/blogs">Blogs</Link>
             <Link href="/details">Details</Link>
             <Link href="/about-affirmations">About</Link>
-          </div>
+          </div> */}
+          <nav class="flex gap-10">
+            {navContent.value.results.map((link, index) => (
+              <a key={index} href={link.data.url}>
+                {link.data.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </header>
       <main class="flex-1 flex flex-col max-w-[1200px] mx-auto w-full justify-center items-center gap-2">
