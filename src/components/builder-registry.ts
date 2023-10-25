@@ -1,6 +1,6 @@
 import type { RegisteredComponent } from "@builder.io/sdk-qwik";
-import Counter from "./counter/counter";
 import Modal from "./modal";
+import { BlogsGrid } from "./blogs-grid/blogs-grid";
 
 /**
  * This array is used to integrate custom components within Builder.
@@ -14,17 +14,11 @@ import Modal from "./modal";
  */
 export const CUSTOM_COMPONENTS: RegisteredComponent[] = [
   {
-    component: Counter,
-    name: "Counter",
-    inputs: [
-      {
-        name: "initialValue",
-        type: "number",
-      },
-    ],
-  },
-  {
     component: Modal,
     name: "Modal",
+  },
+  {
+    component: BlogsGrid,
+    name: "Blogs Grid",
   },
 ];
