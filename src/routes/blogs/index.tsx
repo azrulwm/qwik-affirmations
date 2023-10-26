@@ -7,8 +7,9 @@ import {
   getContent,
 } from "@builder.io/sdk-qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
+import { CUSTOM_COMPONENTS } from "~/components/builder-registry";
 
-export const BUILDER_MODEL = "announcement-bar";
+export const BUILDER_MODEL = "page";
 
 export const useBlogsContent = routeLoader$(async ({ url, error }) => {
   const isPreviewing = url.searchParams.has("builder.preview");
@@ -75,6 +76,7 @@ export default component$(() => {
         model={BUILDER_MODEL}
         content={content.value}
         apiKey={import.meta.env.PUBLIC_BUILDER_API_KEY}
+        customComponents={CUSTOM_COMPONENTS}
       />
     </div>
   );
